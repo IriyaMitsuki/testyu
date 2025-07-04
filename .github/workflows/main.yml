@@ -12,15 +12,16 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      # Обновлено с v3 до v4
+      uses: actions/checkout@v4
       with:
-        submodules: 'recursive' # Если вы добавили ImGui/Dobby как сабмодули
+        submodules: 'recursive'
 
     - name: Set up NDK
       id: setup-ndk
       uses: nttld/setup-ndk@v1
       with:
-        ndk-version: r23c # Можно выбрать актуальную версию NDK
+        ndk-version: r23c
 
     - name: Build with CMake
       working-directory: ./jni
@@ -33,7 +34,9 @@ jobs:
         cmake --build build
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v3
+      # --- ИЗМЕНЕНИЕ ЗДЕСЬ ---
+      # Обновлено с v3 до v4
+      uses: actions/upload-artifact@v4
       with:
         name: libTool2-armeabi-v7a
         path: jni/build/libTool2.so
